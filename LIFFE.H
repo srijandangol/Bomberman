@@ -1,0 +1,32 @@
+void liffe(int BW, int BH,int fx,int fy,int VX,int VY, int VX1,int VY1,int VX3,int VY3,int tox,int toy,int tox1,int toy1,int &score,int &life,int &lifevx,int &lifevx1,int &lifevx3,int &lifetox,int &lifetox1)
+{
+if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+ life--;
+ }
+ if(((VX+8<fx+19&&VX+8>fx-19)||(VX-8<fx+19&&VX-8>fx-19))&&((VY+10<fy+19&&VY+10>fy-19)||(VY-15<fy+19&&VY-15>fy-19)))
+ {
+ lifevx--;
+ score=score+1000;
+ }
+ if(((VX1+8<fx+19&&VX1+8>fx-19)||(VX1-8<fx+19&&VX1-8>fx-19))&&((VY1+10<fy+19&&VY1+10>fy-19)||(VY1-15<fy+19&&VY1-15>fy-19)))
+ {
+ lifevx1--;
+ score=score+1000;
+ }
+ if(((VX3+8<fx+19&&VX3+8>fx-19)||(VX3-8<fx+19&&VX3-8>fx-19))&&((VY3+10<fy+19&&VY3+10>fy-19)||(VY3-15<fy+19&&VY3-15>fy-19)))
+ {
+ lifevx3--;
+ score=score+1000;
+ }
+ if(((tox+8<fx+19&&tox+8>fx-19)||(tox-8<fx+19&&tox-8>fx-19))&&((toy+10<fy+19&&toy+10>fy-19)||(toy-15<fy+19&&toy-15>fy-19)))
+ {
+ lifetox--;
+ score=score+1000;
+ }
+  if(((tox1+8<fx+19&&tox1+8>fx-19)||(tox1-8<fx+19&&tox1-8>fx-19))&&((toy1+10<fy+19&&toy1+10>fy-19)||(toy1-15<fy+19&&toy1-15>fy-19)))
+ {
+ lifetox1--;
+ score=score+1000;
+ }
+}

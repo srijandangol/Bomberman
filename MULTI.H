@@ -1,0 +1,1312 @@
+#include<graphics.h>
+int multi()
+{
+int life1=3,ffx11,ffy11,aa1=0,bombx1=0,bomby1=0,n1=0,nn1=0,bn1=0,cc1=0,fx1,fy1,brow1=0,bcolumn1=0;
+int BH1=449,BW1=576,row1=9,column1=13;
+int life=3,i,tme=0,time[4]={0,0,0,0},lifen[2]={0,3},nbomb[2]={0,1},flamen[2]={0,1},key=1,speed=1,coin[7]={0,0,0,0,0,0,0};
+int gd=DETECT,gm,c1=12,c2=14,ffx,ffy,aa=0,bombx=0,bomby=0,n=0,nn=0,bn=0,cc=0,flame=5,fx,fy,brow=0,bcolumn=0;
+int BH=89,BW=56,row=0,column=0,R[11]={65,105,145,185,225,265,305,345,385,425,465};
+int C[15]={40,82,120,162,200,242,280,322,360,402,440,482,520,562,600};
+int Br[10][14]={0,1,1,1,0,1,0,1,1,0,0,1,1,0
+,0,2,1,2,1,2,1,2,0,2,1,2,1,0
+,0,0,1,1,0,1,0,1,0,0,1,0,0,0
+,0,2,1,2,1,2,0,2,0,2,1,2,1,1
+,1,1,0,0,0,1,0,0,1,0,1,1,1,1
+,1,2,1,2,1,2,1,2,0,2,1,2,1,0
+,0,1,0,1,1,0,0,0,1,0,0,0,1,0
+,1,1,2,1,2,1,2,0,2,1,2,1,2,1
+,1,1,1,0,1,0,1,0,1,0,1,0,0,0
+,0,1,2,1,2,1,2,0,2,1,2,1,2,0};
+int bombn[10][14]={0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+unblock();
+dblock();
+{
+window(1,1,80,2);
+clrscr();
+cout<<"Time:"<<time[0]<<time[1]<<time[2]<<time[3]<<"  Life:"<<lifen[0]<<lifen[1]<<"   Bomb:"<<nbomb[0]<<nbomb[1]<<"    Flame:"<<flamen[0]<<flamen[1]<<"     Key:"<<key<<"     Speed:"<<speed<<"     score:"<<coin[0]<<coin[1]<<coin[2]<<coin[3]<<coin[4]<<coin[5]<<coin[6];
+}
+fmove(0,BH,BW);
+while(life!=0)
+{
+tme++;
+if(tme==10)
+{
+time[3]++;
+tme=0;
+if(time[3]==10)
+{
+time[3]=0;
+time[2]++;
+}
+if(time[2]==10)
+{
+time[2]=0;
+time[1]++;
+}
+if(time[1]==10)
+{
+time[1]=0;
+time[0]++;
+}
+}
+if(bn1==1)
+{
+if(nn1<3)
+{
+setcolor(2);
+setfillstyle(1,2);
+rectangle(bombx1-17,bomby1-20,bombx1+20,bomby1+14);
+floodfill(bombx1,bomby1,2);
+bomb(bombx1,bomby1,n1);
+n1++;
+nn1++;
+cc1++;
+}
+else if(nn1<6)
+{
+setcolor(2);
+setfillstyle(1,2);
+rectangle(bombx1-17,bomby1-20,bombx1+20,bomby1+14);
+floodfill(bombx1,bomby1,2);
+bomb(bombx1,bomby1,n1);
+n1--;
+nn1++;
+cc1++;
+}
+else
+{
+nn1=0;
+}
+}
+if(bn==1)
+{
+if(nn<3)
+{
+setcolor(2);
+setfillstyle(1,2);
+rectangle(bombx-17,bomby-20,bombx+20,bomby+14);
+floodfill(bombx,bomby,2);
+bomb(bombx,bomby,n);
+n++;
+nn++;
+cc++;
+}
+else if(nn<6)
+{
+setcolor(2);
+setfillstyle(1,2);
+rectangle(bombx-17,bomby-20,bombx+20,bomby+14);
+floodfill(bombx,bomby,2);
+bomb(bombx,bomby,n);
+n--;
+nn++;
+cc++;
+}
+else
+{
+nn=0;
+}
+}
+
+if(cc1==120)
+{
+ {
+ setcolor(2);
+ setfillstyle(1,2);
+ rectangle(bombx1-17,bomby1-20,bombx1+20,bomby1+14);
+ floodfill(bombx1,bomby1,2);
+ }
+ fx1=bombx1;
+ fy1=bomby1;
+ ffx11=fx1;
+ ffy11=fy1;
+ if(((BW1+8<fx1+19&&BW1+8>fx1-19)||(BW1-8<fx1+19&&BW1-8>fx1-19))&&((BH1+10<fy1+19&&BH1+10>fy1-19)||(BH1-15<fy1+19&&BH1-15>fy1-19)))
+ {
+ life1--;
+ }
+ flam(fx1,fy1);
+if(fy1-40>65)
+{ if(Br[brow1-1][bcolumn1]!=2)
+  {
+   if(Br[brow1-1][bcolumn1]==1)
+   {   c1=12;
+	c2=14;
+    fy1=fy1-40;
+if(((BW1+8<fx1+19&&BW1+8>fx1-19)||(BW1-8<fx1+19&&BW1-8>fx1-19))&&((BH1+10<fy1+19&&BH1+10>fy1-19)||(BH1-15<fy1+19&&BH1-15>fy1-19)))
+ {
+ life1--;
+ }
+  flam(fx1,fy1);
+  Br[brow1-1][bcolumn1]=0;
+    }//if
+   else
+   {
+    fy1=fy1-40;
+    for(int j=1;j<=flame;j++)
+    {      c1=12;
+	   c2=14;
+ if(((BW1+8<fx1+19&&BW1+8>fx1-19)||(BW1-8<fx1+19&&BW1-8>fx1-19))&&((BH1+10<fy1+19&&BH1+10>fy1-19)||(BH1-15<fy1+19&&BH1-15>fy1-19)))
+ {
+ life1--;
+ }
+     flam(fx1,fy1);
+	 fy1=fy1-40;
+	if(Br[brow1-j][bcolumn1]==1)
+   {
+Br[brow1-j][bcolumn1]=0;
+   break;
+   }
+   else if(Br[(brow1-j)-1][bcolumn1]==2||fy1<65)
+   {
+   break;
+   }
+
+    }
+   }//else
+
+  }
+}
+fy1=ffy11;
+fx1=ffx11;
+if(fx1-40>40)
+{
+if(Br[brow1][bcolumn1-1]!=2)
+{
+if(Br[brow1][bcolumn1-1]==1)
+{  c1=12;
+  c2=14;
+fx1=fx1-40;
+if(((BW1+8<fx1+19&&BW1+8>fx1-19)||(BW1-8<fx1+19&&BW1-8>fx1-19))&&((BH1+10<fy1+19&&BH1+10>fy1-19)||(BH1-15<fy1+19&&BH1-15>fy1-19)))
+ {
+
+ life1--;
+ }
+  flam(fx1,fy1);
+Br[brow1][bcolumn1-1]=0;
+}
+else
+{
+fx1=fx1-40;
+for(int j=1;j<=flame;j++)
+    {    c1=12;
+	c2=14;
+if(((BW1+8<fx1+19&&BW1+8>fx1-19)||(BW1-8<fx1+19&&BW1-8>fx1-19))&&((BH1+10<fy1+19&&BH1+10>fy1-19)||(BH1-15<fy1+19&&BH1-15>fy1-19)))
+ {
+
+ life1--;
+ }
+   flam(fx1,fy1);
+	fx1=fx1-40;
+	if(Br[brow1][bcolumn1-j]==1)
+      {
+Br[brow1][bcolumn1-j]=0;
+      break;
+      }
+      else if(Br[brow1][(bcolumn1-j)-1]==2||fx1<40)
+      {
+      break;
+      }
+    }
+    }
+}
+}
+fy1=ffy11;
+fx1=ffx11;
+if(fx1+40<600)
+{
+if(Br[brow1][bcolumn1+1]!=2)
+{
+if(Br[brow1][bcolumn1+1]==1)
+{  c1=12;
+c2=14;
+fx1=fx1+40;
+if(((BW1+8<fx1+19&&BW1+8>fx1-19)||(BW1-8<fx1+19&&BW1-8>fx1-19))&&((BH1+10<fy1+19&&BH1+10>fy1-19)||(BH1-15<fy1+19&&BH1-15>fy1-19)))
+ {
+
+ life1--;
+ }
+  flam(fx1,fy1);
+Br[brow1][bcolumn1+1]=0;
+}
+else
+{
+ fx1=fx1+40;
+for(int j=1;j<=flame;j++)
+    {     c1=12;
+	c2=14;
+	if(((BW1+8<fx1+19&&BW1+8>fx1-19)||(BW1-8<fx1+19&&BW1-8>fx1-19))&&((BH1+10<fy1+19&&BH1+10>fy1-19)||(BH1-15<fy1+19&&BH1-15>fy1-19)))
+ {
+
+ life1--;
+ }
+ flam(fx1,fy1);
+
+	fx1=fx1+40;
+	if(Br[brow1][bcolumn1+j]==1)
+      {
+Br[brow1][bcolumn1+j]=0;
+      break;
+      }
+      else if(Br[brow1][bcolumn1+j+1]==2||fx1>600)
+      {
+      break;
+      }
+}
+}
+}
+}
+fy1=ffy11;
+fx1=ffx11;
+if(fy1+40<465)
+{
+if(Br[brow1+1][bcolumn1]!=2)
+{
+if(Br[brow1+1][bcolumn1]==1)
+{
+ c1=12;
+c2=14;
+  fy1=fy1+40;
+  if(((BW1+8<fx1+19&&BW1+8>fx1-19)||(BW1-8<fx1+19&&BW1-8>fx1-19))&&((BH1+10<fy1+19&&BH1+10>fy1-19)||(BH1-15<fy1+19&&BH1-15>fy1-19)))
+ {
+
+ life1--;
+ }
+ flam(fx1,fy1);
+Br[brow1+1][bcolumn1]=0;
+}
+ else
+ {
+ fy1=fy1+40;
+for(int j=1;j<=flame;j++)
+    {
+	c1=12;
+       c2=14;
+ if(((BW1+8<fx1+19&&BW1+8>fx1-19)||(BW1-8<fx1+19&&BW1-8>fx1-19))&&((BH1+10<fy1+19&&BH1+10>fy1-19)||(BH1-15<fy1+19&&BH1-15>fy1-19)))
+ {
+
+ life1--;
+ }
+      flam(fx1,fy1);
+	 fy1=fy1+40;
+	if(Br[brow1+j][bcolumn1]==1)
+   {
+Br[brow1+j][bcolumn1]=0;
+   break;
+   }
+   else if(Br[brow1+j+1][bcolumn1]==2||fy1>465)
+   {
+   break;
+   }
+    }
+ }
+}
+}
+bn1=0;
+cc1=0;
+bombn[brow1][bcolumn1]=0;
+unblock();
+}
+if(cc==120)
+{
+ {
+ setcolor(10);
+ setfillstyle(1,10);
+ rectangle(bombx-17,bomby-20,bombx+20,bomby+14);
+ floodfill(bombx,bomby,10);
+ }
+ fx=bombx;
+ fy=bomby;
+ ffx=fx;
+ ffy=fy;
+ if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+ life--;
+ }
+ flam(fx,fy);
+if(fy-40>65)
+{ if(Br[brow-1][bcolumn]!=2)
+  {
+   if(Br[brow-1][bcolumn]==1)
+   {   c1=12;
+	c2=14;
+    fy=fy-40;
+if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+ life--;
+ }
+  flam(fx,fy);
+  Br[brow-1][bcolumn]=0;
+    }//if
+   else
+   {
+    fy=fy-40;
+    for(int j=1;j<=flame;j++)
+    {      c1=12;
+	   c2=14;
+ if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+ life--;
+ }
+       flam(fx,fy);
+	 fy=fy-40;
+	if(Br[brow-j][bcolumn]==1)
+   {
+Br[brow-j][bcolumn]=0;
+   break;
+   }
+   else if(Br[(brow-j)-1][bcolumn]==2||fy<65)
+   {
+   break;
+   }
+
+    }
+   }//else
+
+  }
+}
+fy=ffy;
+fx=ffx;
+if(fx-40>40)
+{
+if(Br[brow][bcolumn-1]!=2)
+{
+if(Br[brow][bcolumn-1]==1)
+{  c1=12;
+  c2=14;
+fx=fx-40;
+if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ } flam(fx,fy);
+Br[brow][bcolumn-1]=0;
+}
+else
+{
+fx=fx-40;
+for(int j=1;j<=flame;j++)
+    {    c1=12;
+	c2=14;
+if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+     flam(fx,fy);
+	fx=fx-40;
+	if(Br[brow][bcolumn-j]==1)
+      {
+Br[brow][bcolumn-j]=0;
+      break;
+      }
+      else if(Br[brow][(bcolumn-j)-1]==2||fx<40)
+      {
+      break;
+      }
+    }
+    }
+}
+}
+fy=ffy;
+fx=ffx;
+if(fx+40<600)
+{
+if(Br[brow][bcolumn+1]!=2)
+{
+if(Br[brow][bcolumn+1]==1)
+{  c1=12;
+c2=14;
+fx=fx+40;
+if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+  flam(fx,fy);
+Br[brow][bcolumn+1]=0;
+}
+else
+{
+ fx=fx+40;
+for(int j=1;j<=flame;j++)
+    {     c1=12;
+	c2=14;
+	if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+  flam(fx,fy);
+
+	fx=fx+40;
+	if(Br[brow][bcolumn+j]==1)
+      {
+Br[brow][bcolumn+j]=0;
+      break;
+      }
+      else if(Br[brow][bcolumn+j+1]==2||fx>600)
+      {
+      break;
+      }
+}
+}
+}
+}
+fy=ffy;
+fx=ffx;
+if(fy+40<465)
+{
+if(Br[brow+1][bcolumn]!=2)
+{
+if(Br[brow+1][bcolumn]==1)
+{
+ c1=12;
+c2=14;
+  fy=fy+40;
+  if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+ flam(fx,fy);
+Br[brow+1][bcolumn]=0;
+}
+ else
+ {
+ fy=fy+40;
+for(int j=1;j<=flame;j++)
+    {
+	c1=12;
+       c2=14;
+ if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+    flam(fx,fy);
+	 fy=fy+40;
+	if(Br[brow+j][bcolumn]==1)
+   {
+Br[brow+j][bcolumn]=0;
+   break;
+   }
+   else if(Br[brow+j+1][bcolumn]==2||fy>465)
+   {
+   break;
+   }
+    }
+ }
+}
+}
+bn=0;
+cc=0;
+bombn[brow][bcolumn]=0;
+unblock();
+}
+if(life<lifen[1])
+{
+ lifen[1]--;
+ life=lifen[1];
+}
+window(1,1,80,2);
+clrscr();
+cout<<"Time:"<<time[0]<<time[1]<<time[2]<<time[3]<<"  Life:"<<lifen[0]<<lifen[1]<<"   Bomb:"<<nbomb[0]<<nbomb[1]<<"    Flame:"<<flamen[0]<<flamen[1]<<"     Key:"<<key<<"     Speed:"<<speed<<"     score:"<<coin[0]<<coin[1]<<coin[2]<<coin[3]<<coin[4]<<coin[5]<<coin[6];
+if(aa==0)
+{
+fmove(0,BH,BW);
+delay(10);
+}
+else if(aa==1)
+{
+fback(0,BH,BW);
+delay(10);
+}
+else if(aa==2)
+{
+fright(BH,BW);
+delay(10);
+}
+else if(aa==3)
+{
+fleft(BH,BW);
+delay(10);
+}
+if(aa1==0)
+{
+fmove(0,BH1,BW1);
+delay(10);
+}
+else if(aa1==1)
+{
+fback(0,BH1,BW1);
+delay(10);
+}
+else if(aa1==2)
+{
+fright(BH1,BW1);
+delay(10);
+}
+else if(aa1==3)
+{
+fleft(BH1,BW1);
+delay(10);
+}
+while(kbhit())
+{
+switch(getch())
+{
+case 115://down
+if(BH+17<465)
+{
+  if(BW-14>=C[column]&&BW+22<=C[column+1])
+  {
+   if(Br[row+1][column]==0&&bombn[row+1][column]==0)
+    {
+    bman(BW,BH);
+BH=BH+2;
+aa=0;
+  if(BH+14>R[row+1])
+  {
+  row++;
+  }
+ }
+ else if(Br[row+1][column]==0&&bombn[row+1][column]!=0)
+ {
+  if((BH+16>=bomby-19&&BH+16<=bomby+12)||(BH-22>=bomby-19&&BH-22<=bomby+12))
+    {
+  bman(BW,BH);
+BH=BH+2;
+aa=1;
+  if(BH+14>R[row+1])
+  {
+  row++;
+  }
+      }
+  else
+  {
+ if(BH+16<R[row+1])
+  {
+  bman(BW,BH);
+BH=BH+2;
+aa=0;
+     }
+  }
+ }
+ else
+ {
+    if(bombn[row][column]!=0)
+    {
+
+      if(BH-22>=bomby-18&&BH-22<=bomby+11)
+    {
+    if(BH+16<R[row+1])
+  {
+  bman(BW,BH);
+BH=BH+2;
+aa=0;
+      }
+      }
+      else if(BH-22>bomby+11)
+      {
+      if(BH+16<R[row+1])
+  {
+       bman(BW,BH);
+BH=BH+2;
+aa=0;
+  }
+      }
+    }
+    else if(bombn[row][column]==0)
+    {
+    if(BH+16<R[row+1])
+  {
+  bman(BW,BH);
+BH=BH+2;
+aa=0;
+
+  }
+  else
+  {
+    bman(BW,BH);
+aa=0;
+  }
+  }
+ }
+ }
+}
+break;
+case 119://up
+if(BH-24>65)
+{
+if(BW-12>=C[column]&&BW+22<=C[column+1])
+{
+if(Br[row-1][column]==0&&bombn[row-1][column]==0)
+ {
+  bman(BW,BH);
+BH=BH-2;
+aa=1;
+  if(BH-21<R[row])
+  {
+  row--;
+  }
+ }
+ else if(Br[row-1][column]==0&&bombn[row-1][column]!=0)
+ { if((BH-22>=bomby-19&&BH-22<=bomby+12)||(BH+16>=bomby-19&&BH+16<=bomby+12))
+    {
+  bman(BW,BH);
+BH=BH-2;
+aa=1;
+  if(BH-21<R[row])
+  {
+  row--;
+  }
+  }
+   else
+   {
+   if(BH-23>R[row])
+  {
+   bman(BW,BH);
+BH=BH-2;
+aa=1;
+
+  }
+  }
+ }
+ else
+ {
+     if(bombn[row][column]!=0)
+    {
+    if(BH+16>=bomby-18&&BH+16<=bomby+11)
+    {
+     if(BH-21>R[row])
+  {
+ bman(BW,BH);
+BH=BH-2;
+aa=1;
+      }
+      }
+      else if(BH+16<bomby-18)
+      {
+       if(BH-21>R[row])
+  {
+       bman(BW,BH);
+BH=BH-2;
+aa=1;
+      }
+      }
+      }
+      else if(bombn[row][column]==0)
+    {
+    if(BH-24>R[row])
+  {
+   bman(BW,BH);
+BH=BH-2;
+aa=1;
+
+  }
+  else
+  {
+   bman(BW,BH);
+aa=1;
+  }
+  }
+ }
+ }
+}
+break;
+case 97://left
+if(BW-16>40)
+{
+if(BH-22>R[row]&&BH+15<R[row+1])
+{
+if(Br[row][column-1]==0&&bombn[row][column-1]==0)
+ {
+  bman(BW,BH);
+aa=3;
+ BW=BW-2;
+ if(BW-13<C[column])
+ {
+ column--;
+ }
+ }
+ else if(Br[row][column-1]==0&&bombn[row][column-1]!=0)
+ {
+  if((BW-12>=bombx-11&&BW-12<=bombx+15)||(BW+12>=bombx-11&&BW+12<=bombx+15))
+    {
+  bman(BW,BH);
+BW=BW-2;
+aa=3;
+if(BW-13<C[column])
+ {
+ column--;
+ }
+      }
+
+    else
+    {
+    if(BW-16>C[column])
+ {
+  bman(BW,BH);
+BW=BW-2;
+aa=3;
+  }
+ }
+ }
+ else
+ {
+ if(bombn[row][column]!=0)
+ {
+    if(BW+12>=bombx-11&&BW+12<=bombx+15)
+    {
+     if(BW-16>C[column])
+ {
+  bman(BW,BH);
+BW=BW-2;
+aa=3;
+      }
+      }
+      else if(BW+18<bombx-11)
+      {
+       if(BW-16>C[column])
+ {
+       bman(BW,BH);
+BW=BW-2;
+aa=3;
+      }
+      }
+ }
+ else
+ {
+   bman(BW,BH);
+aa=3;
+   if(BW-16>C[column])
+ {
+  bman(BW,BH);
+BW=BW-2;
+aa=3;
+ }
+ }
+ }
+ }
+else if((BH-22<=R[row]-5&&BH+15<R[row+1]))
+{
+if(row%2==0)
+{
+if(BH+16<=R[row+1])
+{
+  bman(BW,BH);
+aa=0;
+BH=BH+2;
+}
+}
+}
+else if((BH-22<=R[row+1]&&BH+15>=R[row+1]))
+{
+if(row%2==0)
+{
+if(BH>=R[row])
+{
+  bman(BW,BH);
+aa=1 ;
+BH=BH-2;
+}
+}
+}
+}
+break;
+case 100://right
+if(BW+24<=601)
+{
+if(BH-22>R[row]&&BH+15<R[row+1])
+{
+if(Br[row][column+1]==0&&bombn[row][column+1]==0)
+ {
+  bman(BW,BH);
+aa=2;
+ BW=BW+2;
+ if(BW+16>C[column+1])
+ {
+ column++;
+ }
+ }
+ else if(Br[row][column+1]==0&&bombn[row][column+1]!=0)
+ {
+  if((BW+12>=bombx-11&&BW+12<=bombx+15)||(BW-12>=bombx-11&&BW-12<=bombx+15))
+    {
+  bman(BW,BH);
+BW=BW+2;
+aa=2;
+if(BW+16>C[column+1])
+ {
+ column++;
+ }
+      }
+   else
+   {
+    if(BW+26<C[column+1])
+ {
+   bman(BW,BH);
+BW=BW+2;
+aa=2;
+ }
+ }
+ }
+ else
+ {
+ if(bombn[row][column]!=0)
+ {
+    if(BW-12>=bombx-11&&BW-12<=bombx+15)
+    {
+ if(BW+26<C[column+1])
+ {
+  bman(BW,BH);
+BW=BW+2;
+aa=2;
+      }
+      }
+      else if(BW-12>bombx+15)
+      {
+      if(BW+26<C[column+1])
+ {
+       bman(BW,BH);
+BW=BW+2;
+aa=2;
+      }
+      }
+ }
+
+ else
+ {
+   bman(BW,BH);
+aa=2;
+   if(BW+24<C[column+1])
+ {
+   bman(BW,BH);
+BW=BW+2;
+aa=2;
+ }
+ }
+ }
+ }
+else if((BH-22<=R[row]+5&&BH+15<R[row+1]))
+{
+if(row%2==0)
+{
+if(BH+16<=R[row+1])
+{
+  bman(BW,BH);
+aa=0;
+BH=BH+2;
+}
+}
+}
+else if((BH-22<=R[row+1]&&BH+15>=R[row+1]))
+{
+if(row%2==0)
+{
+if(BH>=R[row])
+{
+  bman(BW,BH);
+aa=1 ;
+BH=BH-2;
+}
+}
+}
+}
+break;
+case 118:
+if(bn==0)
+{
+bomby=R[row]+20;
+bombx=C[column]+19;
+bombn[row][column]=1;
+brow=row;
+bcolumn=column;
+bn=1;
+}
+break;
+case 27://exit from game
+return(7);
+case 80://down
+if(BH1+17<465)
+{
+  if(BW1-14>=C[column1]&&BW1+22<=C[column1+1])
+  {
+   if(Br[row1+1][column1]==0&&bombn[row1+1][column1]==0)
+    {
+   bman(BW1,BH1);
+BH1=BH1+2;
+aa1=0;
+  if(BH1+14>R[row1+1])
+  {
+  row1++;
+  }
+ }
+ else if(Br[row1+1][column1]==0&&bombn[row1+1][column1]!=0)
+ {
+  if((BH1+16>=bomby1-19&&BH1+16<=bomby1+12)||(BH1-22>=bomby1-19&&BH1-22<=bomby1+12))
+    {
+  bman(BW1,BH1);
+BH1=BH1+2;
+aa1=1;
+  if(BH1+14>R[row1+1])
+  {
+  row1++;
+  }
+      }
+  else
+  {
+ if(BH1+16<R[row1+1])
+  {
+   bman(BW1,BH1);
+BH1=BH1+2;
+aa1=0;
+     }
+  }
+ }
+ else
+ {
+    if(bombn[row1][column1]!=0)
+    {
+
+      if(BH1-22>=bomby1-18&&BH1-22<=bomby1+11)
+    {
+    if(BH1+16<R[row1+1])
+  {
+  bman(BW1,BH1);
+BH1=BH1+2;
+aa1=0;
+      }
+      }
+      else if(BH1-22>bomby1+11)
+      {
+      if(BH1+16<R[row1+1])
+  {
+      bman(BW,BH);
+BH1=BH1+2;
+aa1=0;
+  }
+      }
+    }
+    else if(bombn[row1][column1]==0)
+    {
+    if(BH1+16<R[row1+1])
+  {
+   bman(BW1,BH1);
+BH1=BH1+2;
+aa1=0;
+
+  }
+  else
+  {
+   bman(BW1,BH1);
+aa1=0;
+  }
+  }
+ }
+ }
+}
+break;
+case 72://up
+if(BH1-24>65)
+{
+if(BW1-12>=C[column1]&&BW1+22<=C[column1+1])
+{
+if(Br[row1-1][column1]==0&&bombn[row1-1][column1]==0)
+ {
+  bman(BW1,BH1);
+BH1=BH1-2;
+aa1=1;
+  if(BH1-21<R[row1])
+  {
+  row1--;
+  }
+ }
+ else if(Br[row1-1][column1]==0&&bombn[row1-1][column1]!=0)
+ { if((BH1-22>=bomby1-19&&BH1-22<=bomby1+12)||(BH1+16>=bomby1-19&&BH1+16<=bomby1+12))
+    {
+  bman(BW1,BH1);
+BH1=BH1-2;
+aa1=1;
+  if(BH1-21<R[row1])
+  {
+  row1--;
+  }
+  }
+   else
+   {
+   if(BH1-23>R[row1])
+  {
+   bman(BW1,BH1);
+BH1=BH1-2;
+aa1=1;
+
+  }
+  }
+ }
+ else
+ {
+     if(bombn[row1][column1]!=0)
+    {
+    if(BH1+16>=bomby1-18&&BH1+16<=bomby1+11)
+    {
+     if(BH1-21>R[row1])
+  {
+  bman(BW1,BH1);
+BH1=BH1-2;
+aa1=1;
+      }
+      }
+      else if(BH1+16<bomby1-18)
+      {
+       if(BH1-21>R[row1])
+  {
+       bman(BW1,BH1);
+BH1=BH1-2;
+aa1=1;
+      }
+      }
+      }
+      else if(bombn[row1][column1]==0)
+    {
+    if(BH1-24>R[row1])
+  {
+   bman(BW1,BH1);
+BH1=BH1-2;
+aa1=1;
+
+  }
+  else
+  {
+   bman(BW1,BH1);
+aa1=1;
+  }
+  }
+ }
+ }
+}
+break;
+case 75://left
+if(BW1-16>40)
+{
+if(BH1-22>R[row1]&&BH1+15<R[row1+1])
+{
+if(Br[row1][column1-1]==0&&bombn[row1][column1-1]==0)
+ {
+  bman(BW1,BH1);
+aa1=3;
+ BW1=BW1-2;
+ if(BW1-13<C[column1])
+ {
+ column1--;
+ }
+ }
+ else if(Br[row1][column1-1]==0&&bombn[row1][column1-1]!=0)
+ {
+  if((BW1-12>=bombx1-11&&BW1-12<=bombx1+15)||(BW1+12>=bombx1-11&&BW1+12<=bombx1+15))
+    {
+  bman(BW1,BH1);
+BW1=BW1-2;
+aa1=3;
+if(BW1-13<C[column1])
+ {
+ column1--;
+ }
+      }
+
+    else
+    {
+    if(BW1-16>C[column1])
+ {
+  bman(BW1,BH1);
+BW1=BW1-2;
+aa1=3;
+  }
+ }
+ }
+ else
+ {
+ if(bombn[row1][column1]!=0)
+ {
+    if(BW1+12>=bombx1-11&&BW1+12<=bombx1+15)
+    {
+     if(BW1-16>C[column1])
+ {
+  bman(BW1,BH1);
+BW1=BW1-2;
+aa1=3;
+      }
+      }
+      else if(BW1+18<bombx1-11)
+      {
+       if(BW1-16>C[column1])
+ {
+       bman(BW1,BH1);
+BW1=BW1-2;
+aa1=3;
+      }
+      }
+ }
+ else
+ {
+   bman(BW,BH);
+aa1=3;
+   if(BW1-16>C[column1])
+ {
+   bman(BW1,BH1);
+BW1=BW1-2;
+aa1=3;
+ }
+ }
+ }
+ }
+else if((BH1-22<=R[row1]-5&&BH1+15<R[row1+1]))
+{
+if(row1%2==0)
+{
+if(BH1+16<=R[row1+1])
+{
+  bman(BW1,BH1);
+aa1=0;
+BH1=BH1+2;
+}
+}
+}
+else if((BH1-22<=R[row1+1]&&BH1+15>=R[row1+1]))
+{
+if(row1%2==0)
+{
+if(BH1>=R[row1])
+{
+  bman(BW1,BH1);
+aa1=1 ;
+BH1=BH1-2;
+}
+}
+}
+}
+break;
+case 77://right
+if(BW1+24<=601)
+{
+if(BH1-22>R[row1]&&BH1+15<R[row1+1])
+{
+if(Br[row1][column1+1]==0&&bombn[row1][column1+1]==0)
+ {
+  bman(BW1,BH1);
+aa1=2;
+ BW1=BW1+2;
+ if(BW1+16>C[column1+1])
+ {
+ column1++;
+ }
+ }
+ else if(Br[row1][column1+1]==0&&bombn[row1][column1+1]!=0)
+ {
+  if((BW1+12>=bombx1-11&&BW1+12<=bombx1+15)||(BW1-12>=bombx1-11&&BW1-12<=bombx1+15))
+    {
+  bman(BW1,BH1);
+BW1=BW1+2;
+aa1=2;
+if(BW1+16>C[column1+1])
+ {
+ column1++;
+ }
+      }
+   else
+   {
+    if(BW1+26<C[column1+1])
+ {
+   bman(BW1,BH1);
+BW1=BW1+2;
+aa1=2;
+ }
+ }
+ }
+ else
+ {
+ if(bombn[row1][column1]!=0)
+ {
+    if(BW1-12>=bombx1-11&&BW1-12<=bombx1+15)
+    {
+ if(BW1+26<C[column1+1])
+ {
+ bman(BW1,BH1);
+BW1=BW1+2;
+aa1=2;
+      }
+      }
+      else if(BW1-12>bombx1+15)
+      {
+      if(BW1+26<C[column1+1])
+ {bman(BW1,BH1);
+BW1=BW1+2;
+aa1=2;
+      }
+      }
+ }
+
+ else
+ {
+  bman(BW1,BH1);
+aa1=2;
+   if(BW1+24<C[column1+1])
+ {
+ bman(BW1,BH1);
+BW1=BW1+2;
+aa1=2;
+ }
+ }
+ }
+ }
+else if((BH1-22<=R[row1]+5&&BH1+15<R[row1+1]))
+{
+if(row1%2==0)
+{
+if(BH1+16<=R[row1+1])
+{
+bman(BW1,BH1);
+aa1=0;
+BH1=BH1+2;
+}
+}
+}
+else if((BH1-22<=R[row1+1]&&BH1+15>=R[row1+1]))
+{
+if(row1%2==0)
+{
+if(BH1>=R[row1])
+{
+ bman(BW1,BH1);
+aa1=1 ;
+BH1=BH1-2;
+}
+}
+}
+}
+break;
+case 109:
+if(bn1==0)
+{
+bomby1=R[row1]+20;
+bombx1=C[column1]+19;
+bombn[row1][column1]=1;
+brow1=row1;
+bcolumn1=column1;
+bn1=1;
+}
+break;
+}
+}
+}
+}

@@ -1,0 +1,1658 @@
+#include<graphics.h>
+#include<closed.h>
+#include<door.h>
+#include<process.h>
+#include<fmove.h>
+#include<moveback.h>
+#include<Arenaa.h>
+#include<brick.h>
+#include<Bomb.h>
+#include<fleft.h>
+#include<frightt.h>
+#include<key.h>
+#include<toolkeyy.h>
+#include<vashme.h>
+#include<fire.h>
+#include<life.h>
+#include<flam.h>
+#include<toxback.h>
+#include<bman.h>
+#include<nngamep.h>
+int ngame()
+{
+int keyf=1,love=1,love1=1,love2=2,li1=0,li2=0,li3=0,li4=0,li5=0,score=0,sc=6,score1;
+int flame1=1,flame2=1,flame3=1,flame4=1,flame5=1,flame6=1,flame7=1,flame8=1;
+int lifevx=1,lifevx1=1,lifevx3=1,lifetox=2,lifetox1=2;
+int tox1=580,toy1=445,trow1=9,tcolumn1=13,pp4=2,pp5=1,tox=580,toy=165,trow=2,tcolumn=13;
+int VX=300,VY=243,erow2=4,ecolumn2=6,pp=1;
+int VX1=260,VY1=325,erow1=6,ecolumn1=5,pp1=1;
+int VX3=140,VY3=243,erow3=4,ecolumn3=2,pp3=1;
+int life=5,i,tme=0,time[4]={0,0,0,0},lifen[2]={0,5},nbomb[2]={0,1},flamen[2]={0,1},key=1,speed=1,coin[7]={0,0,0,0,0,0,0};
+int ffx,ffy,aa=0,bombx=0,bomby=0,n=0,nn=0,bn=0,cc=0,flame=1,fx,fy,brow=0,bcolumn=0;
+int BH=89,BW=56,row=0,column=0,R[11]={65,105,145,185,225,265,305,345,385,425,465};
+int C[15]={40,82,122,162,202,242,282,322,362,402,442,482,522,562,600};
+int Br[10][14]={0,1,1,1,0,1,0,1,1,0,0,1,1,0
+,0,2,1,2,1,2,1,2,0,2,1,2,1,2
+,0,0,1,1,0,1,0,1,0,0,1,0,0,0
+,0,2,1,2,1,2,0,2,0,2,1,2,1,2
+,1,1,0,0,0,1,0,0,1,0,1,1,1,1
+,1,2,1,2,1,2,1,2,0,2,1,2,1,2
+,0,1,0,1,1,0,0,0,1,0,0,0,1,0
+,2,1,2,1,2,1,2,0,2,1,2,1,2,1
+,1,1,1,0,1,0,1,0,1,0,1,0,0,0
+,2,1,2,1,2,1,2,0,2,1,2,1,2,0};
+int bombn[10][14]={0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+unblock();
+dblock();
+toolkey(tox1,toy1);
+vashme(VX3,VY3);
+{
+window(1,1,80,2);
+clrscr();
+cout<<"Time:"<<time[0]<<time[1]<<time[2]<<time[3]<<"  Life:"<<lifen[0]<<lifen[1]<<"   Bomb:"<<nbomb[0]<<nbomb[1]<<"    Flame:"<<flamen[0]<<flamen[1]<<"     Key:"<<key<<"     Speed:"<<speed<<"     score:"<<coin[0]<<coin[1]<<coin[2]<<coin[3]<<coin[4]<<coin[5]<<coin[6];
+}
+fmove(0,BH,BW);
+while(life!=0)
+{
+tme++;
+if(tme==10)
+{
+time[3]++;
+tme=0;
+if(time[3]==10)
+{
+time[3]=0;
+time[2]++;
+}
+if(time[2]==10)
+{
+time[2]=0;
+time[1]++;
+}
+if(time[1]==10)
+{
+time[1]=0;
+time[0]++;
+}
+}
+if(lifevx>0)
+{
+if(pp==1)
+{
+if(VX<C[10]-16)
+{
+if(VY-14>R[erow2]&&VY+17<R[erow2+1])
+{
+if((Br[erow2][ecolumn2+1]==0&&bombn[erow2][ecolumn2+1]==0))
+ {
+ if((column-ecolumn2<=4&&column-ecolumn2>=0)&&row==erow2&&Br[erow2][ecolumn2+1]==0&&Br[erow2][ecolumn2+2]==0&&Br[erow2][ecolumn2+3]==0)
+ {
+   VX=VX+4;
+ vashme(VX,VY);
+ if(VX+16>C[ecolumn2+1])
+ {
+ ecolumn2++;
+ }
+ }
+ else if((column-ecolumn2>=-4&&column-ecolumn2<=0)&&row==erow2&&Br[erow2][ecolumn2-1]==0&&Br[erow2][ecolumn2-2]==0&&Br[erow2][ecolumn2-3]==0)
+ {
+ pp=3;
+ }
+ else
+ {
+ VX=VX+2;
+ vashme(VX,VY);
+ if(VX+16>C[ecolumn2+1])
+ {
+ ecolumn2++;
+ }
+ }
+ }
+ else
+ {
+   if(VX+18<C[ecolumn2+1])
+ {
+VX=VX+3;
+vashme(VX,VY);
+ }
+ else
+ {
+ pp=3;
+ }
+ }
+ }
+ }
+ else
+ {
+ pp=3;
+ }
+ }
+else if(pp==2)
+{
+if(VY>R[0]+18)
+{
+if(VX-15>=C[ecolumn2]&&VX+15<=C[ecolumn2+1])
+{
+if(Br[erow2-1][ecolumn2]==0&&bombn[erow2-1][ecolumn2]==0)
+ {
+ if((erow2-row<=4&&erow2-row>=0)&&column==ecolumn2&&Br[erow2-1][ecolumn2]==0&&Br[erow2-2][ecolumn2]==0&&Br[erow2-3][ecolumn2]==0)
+ {
+   VY=VY-4;
+ vashme(VX,VY);
+ if(VY-14<R[erow2])
+ {
+ erow2--;
+ }
+ }
+ else if((erow2-row>=-4&&erow2-row<=0)&&column==ecolumn2&&Br[erow2-1][ecolumn2]==0&&Br[erow2-2][ecolumn2]==0&&Br[erow2-3][ecolumn2]==0)
+ {
+ pp=4;
+ }
+ else
+ {
+ VY=VY-3;
+ vashme(VX,VY);
+ if(VY-14<R[erow2])
+ {
+ erow2--;
+ }
+ }
+ }
+ else
+ {
+   if(VY-18>R[erow2])
+ {
+VY=VY-3;
+vashme(VX,VY);
+ }
+ else
+ {
+ pp=4;
+ }
+ }
+ }
+ }
+ else
+ {
+ pp=4;
+ }
+}
+else if(pp==3)
+{
+if(VX>C[6]+20)
+{
+if(VY-14>R[erow2]&&VY+17<R[erow2+1])
+{
+if(Br[erow2][ecolumn2-1]==0&&bombn[erow2][ecolumn2-1]==0)
+ {
+ 
+if((ecolumn2-column<=4&&ecolumn2-column>=0)&&row==erow2&&Br[erow2][ecolumn2-1]==0&&Br[erow2][ecolumn2-2]==0&&Br[erow2][ecolumn2-3]==0)
+ {
+   VX=VX-4;
+ vashme(VX,VY);
+ if(VX-16<C[ecolumn2])
+ {
+ ecolumn2--;
+ }
+ }
+ else if((ecolumn2-column>=-4&&ecolumn2-column<=0)&&Br[erow2][ecolumn2+1]==0&&row==erow2&&Br[erow2][ecolumn2+2]==0&&Br[erow2][ecolumn2+3]==0)
+ {
+  pp=1;
+ }
+ else
+ {
+
+ VX=VX-2;
+ vashme(VX,VY);
+ if(VX-16<C[ecolumn2])
+ {
+ ecolumn2--;
+ }
+ }
+ }
+ else
+ {
+   if(VX-18>C[ecolumn2])
+ {
+VX=VX-3;
+vashme(VX,VY);
+ }
+ else
+ {
+ pp=2;
+ }
+ }
+ }
+ }
+ else
+ {
+ pp=2;
+ }
+}
+else if(pp==4)
+{
+if(VY<R[5]-23)
+{
+if(VX-14>=C[ecolumn2]&&VX+14<=C[ecolumn2+1])
+{
+if(Br[erow2+1][ecolumn2]==0&&bombn[erow2+1][ecolumn2]==0)
+ {
+ 
+if((row-erow2<=4&&row-erow2>=0)&&column==ecolumn2&&Br[erow2+1][ecolumn2]==0&&Br[erow2+2][ecolumn2]==0&&Br[erow2+3][ecolumn2]==0)
+ {
+    VY=VY+4;
+ vashme(VX,VY);
+ if(VY+17>R[erow2+1])
+ {
+ erow2++;
+ }
+ }
+ else if((row-erow2>=-4&&row-erow2<=0)&&column==ecolumn2&&Br[erow2+1][ecolumn2]==0&&Br[erow2+2][ecolumn2]==0&&Br[erow2+3][ecolumn2]==0)
+ {
+ pp=2;
+ }
+ else
+ {
+ VY=VY+2;
+ vashme(VX,VY);
+ if(VY+17>R[erow2+1])
+ {
+ erow2++;
+ }
+ }
+ }
+ else
+ {
+   if(VY+22<R[erow2+1])
+ {
+VY=VY+3;
+vashme(VX,VY);
+ }
+ else
+ {
+ pp=1;
+ }
+ }
+ }
+ }
+ else
+ {
+ pp=1;
+ }
+}
+}//if
+else
+{
+  setcolor(2);
+	     setfillstyle(1,2);
+	     rectangle(VX+19,VY+19,VX-19,VY-19);
+	     floodfill(VX,VY,2);
+}
+//next vashme(down)
+if(lifevx1>0)
+{
+if(pp1==1)//RIGHT
+{
+if(VX1<C[10]-16)
+{
+if(VY1-14>R[erow1]&&VY1+17<R[erow1+1])
+{
+if(Br[erow1][ecolumn1+1]==0&&bombn[erow1][ecolumn1+1]==0)
+ {
+ VX1=VX1+3;
+ vashme(VX1,VY1);
+ if(VX1+16>C[ecolumn1+1])
+ {
+ ecolumn1++;
+ }
+ }
+ else
+ {
+   if(VX1+22<C[ecolumn1+1])
+ {
+VX1=VX1+3;
+vashme(VX1,VY1);
+ }
+ else
+ {
+ pp1=4;//DOWN
+ }
+ }
+ }
+ }
+ else
+ {
+ pp1=3;//LEFT
+ }
+ }
+else if(pp1==2)//UP
+{
+if(VY1>R[6]+18)
+{
+if(VX1-15>=C[ecolumn1]&&VX1+15<=C[ecolumn1+1])
+{
+if(Br[erow1-1][ecolumn1]==0&&bombn[erow1-1][ecolumn1]==0)
+ {
+ VY1=VY1-3;
+ vashme(VX1,VY1);
+ if(VY1-14<R[erow1])
+ {
+ erow1--;
+ }
+ }
+ else
+ {
+   if(VY1-18>R[erow1])
+ {
+VY1=VY1-3;
+vashme(VX1,VY1);
+ }
+ else
+ {
+ pp1=3;//LEFT
+ }
+ }
+ }
+ }
+ else
+ {
+ pp1=3;//LEFT
+ }
+}
+else if(pp1==3)//LEFT
+{
+if(VX1>C[0]+20)
+{
+if(VY1-14>R[erow1]&&VY1+17<R[erow1+1])
+{
+if(Br[erow1][ecolumn1-1]==0&&bombn[erow1][ecolumn1-1]==0)
+ {
+ VX1=VX1-3;
+ vashme(VX1,VY1);
+ if(VX1-16<C[ecolumn1])
+ {
+ ecolumn1--;
+ }
+ }
+ else
+ {
+   if(VX1-18>C[ecolumn1])
+ {
+VX1=VX1-3;
+vashme(VX1,VY1);
+ }
+ else
+ {
+ pp1=1;//RIGHT
+ }
+ }
+ }
+ }
+ else
+ {
+ pp1=1;
+ }
+}
+else if(pp1==4)//DOWN
+{
+if(VY1<R[10]-20)
+{
+if(VX1-12>=C[ecolumn1]&&VX1+12<=C[ecolumn1+1])
+{
+if(Br[erow1+1][ecolumn1]==0&&bombn[erow1+1][ecolumn1]==0)
+ {
+ VY1=VY1+3;
+ vashme(VX1,VY1);
+ if(VY1+17>R[erow1+1])
+ {
+ erow1++;
+ }
+ }
+ else
+ {
+   if(VY1+20<R[erow1+1])
+ {
+VY1=VY1+3;
+vashme(VX1,VY1);
+ }
+ else
+ {
+ pp1=2;//UP
+ }
+ }
+ }
+ }
+ else
+ {
+ pp1=2;//UP
+ }
+}
+}
+else
+{
+  setcolor(2);
+	     setfillstyle(1,2);
+	     rectangle(VX1+19,VY1+19,VX1-19,VY1-19);
+	     floodfill(VX1,VY1,2);
+}
+if(lifevx3>0)
+{
+if(pp3==1)//RIGHT
+{
+if(VX3<C[5]-16)
+{
+if(Br[erow3][ecolumn3+1]==0&&bombn[erow3][ecolumn3+1]==0&&(ecolumn3!=ecolumn2))
+ {
+ VX3=VX3+3;
+ vashme(VX3,VY3);
+ if(VX3+16>C[ecolumn3+1])
+ {
+ ecolumn3++;
+ }
+ }
+ else if(ecolumn3==ecolumn2&&erow3==erow2)
+ {
+  if(VX3+19>VX-18)
+ {
+ pp3=3;//DOWN
+ }
+ }
+ else
+ {
+   if(VX3+20<C[ecolumn3+1])
+ {
+VX3=VX3+3;
+vashme(VX3,VY3);
+ }
+ else
+ {
+ pp3=4;//DOWN
+ }
+ }
+ }
+ else
+ {
+ pp3=3;//LEFT
+ }
+ }
+else if(pp3==2)//UP
+{
+if(VY3>R[0]+18)
+{
+if(Br[erow3-1][ecolumn3]==0&&bombn[erow3-1][ecolumn3]==0)
+ {
+ VY3=VY3-3;
+ vashme(VX3,VY3);
+ if(VY3-14<R[erow3])
+ {
+ erow3--;
+ }
+ }
+ else
+ {
+   if(VY3-21>R[erow3])
+ {
+VY3=VY3-3;
+vashme(VX3,VY3);
+ }
+ else
+ {
+ pp3=3;//LEFT
+ }
+ }
+ }
+ else
+ {
+ pp3=3;//LEFT
+ }
+}
+else if(pp3==3)//LEFT
+{
+if(VX3>C[0]+20)
+{
+if(Br[erow3][ecolumn3-1]==0&&bombn[erow3][ecolumn3-1]==0)
+ {
+ VX3=VX3-3;
+ vashme(VX3,VY3);
+ if(VX3-16<C[ecolumn3])
+ {
+ ecolumn3--;
+ }
+ }
+/* else if(ecolumn3==ecolumn2&&erow3==erow2)
+ {
+  if(VX3-19<VX+18)
+ {
+ pp3=1;//RIGHT
+ }
+ }*/
+ else
+ {
+   if(VX3-18>C[ecolumn3])
+ {
+VX3=VX3-3;
+vashme(VX3,VY3);
+ }
+ else
+ {
+ pp3=1;//RIGHT
+ }
+ }
+ }
+ else
+ {
+ pp3=1;
+ }
+}
+else if(pp3==4)//DOWN
+{
+if(VY3<R[5]-20)
+{
+
+if(Br[erow3+1][ecolumn3]==0&&bombn[erow3+1][ecolumn3]==0)
+ {
+ VY3=VY3+3;
+ vashme(VX3,VY3);
+ if(VY3+17>R[erow3+1])
+ {
+ erow3++;
+ }
+ }
+ else
+ {
+   if(VY3+22<R[erow3+1])
+ {
+VY3=VY3+3;
+vashme(VX3,VY3);
+ }
+ else
+ {
+ pp3=2;//UP
+ }
+ }
+ }
+ else
+ {
+ pp3=2;//UP
+ }
+}
+}//if
+else
+{
+  setcolor(2);
+	     setfillstyle(1,2);
+	     rectangle(VX3+19,VY3+19,VX3-19,VY3-19);
+	     floodfill(VX3,VY3,2);
+}
+if(lifetox>0)
+{
+if(pp5==1)//right
+      {
+      if(tox+21<601)
+	{
+	 if(Br[trow][tcolumn+1]==0&&bombn[trow][tcolumn+1]==0)
+	   {
+	    toxback(tox,toy);
+	    tox=tox+3;
+	    toolkey(tox,toy);
+	    if(tox+16>C[tcolumn+1])
+	     {
+	      tcolumn++;
+	     }
+	   }
+       else
+
+       {
+
+     if(tox+16<C[tcolumn+1])
+
+       {  
+          toxback(tox,toy);
+	tox=tox+3;
+	 toolkey(tox,toy);
+       }
+       else
+       {
+       pp5=2;
+       }
+     }
+ }
+ else
+ {
+ pp5=2;
+ }
+}
+else if(pp5==3)//left
+       {
+      if(tox-19>40)
+       {
+	if(Br[trow][tcolumn-1]==0&&bombn[trow][tcolumn-1]==0)  /////////
+	 {
+ toxback(tox,toy);
+ tox=tox-3;
+ toolkey(tox,toy);
+ if(tox-19<C[tcolumn-1])
+ {
+tcolumn--;
+ }
+ }
+ else
+
+ {
+
+   if(tox-19>C[tcolumn])
+
+ {   toxback(tox,toy);
+tox=tox-3;
+ toolkey(tox,toy);
+ }
+ else
+ {
+ pp5=1;
+ }
+ }
+ }
+ else
+ {
+ pp5=1;
+ }
+ }
+else if(pp5==2) //up
+ {
+  if(toy-21>65)
+{
+if(Br[trow-1][tcolumn]==0&&bombn[trow-1][tcolumn]==0)
+ {
+ toxback(tox,toy);
+toy=toy-2;
+toolkey(tox,toy);
+  if(toy-18<R[trow-1])
+  {
+  trow--;
+  }
+ }
+ else
+ {
+    if(toy-20>R[trow])
+  {
+  toxback(tox,toy);
+ toy=toy-3;
+toolkey(tox,toy);
+  }
+  else
+  {
+  pp5=4;
+  }
+ }
+ }
+ else
+ {
+ pp5=4;
+ }
+}
+else if(pp5==4)//down
+ {
+  if(toy+19<465)
+{
+if(Br[trow+1][tcolumn]==0&&bombn[trow+1][tcolumn]==0)
+ {
+ toxback(tox,toy);
+toy=toy+3;
+toolkey(tox,toy);
+  if(toy+16>R[trow+1])
+  {
+  trow++;
+  }
+ }
+ else
+ {
+
+    if(toy+19<R[trow+1])
+  {
+  toxback(tox,toy);
+toy=toy+3;
+toolkey(tox,toy);
+}
+else
+{
+pp5=3;
+  }
+ }
+ }
+ else
+ {
+ pp5=3;
+}
+}
+}
+else
+{
+  toxback(tox,toy);
+}
+
+{
+if(lifetox1>0)
+{
+if(pp4==2)//up
+ {
+  if(toy1-22>65)
+{
+if(Br[trow1-1][tcolumn1]==0&&bombn[trow1-1][tcolumn1]==0)
+ {
+ toxback(tox1,toy1);
+toy1=toy1-3;
+toolkey(tox1,toy1);
+  if(toy1-18<R[trow1])
+  {
+  trow1--;
+  }
+ }
+ else
+ {
+    if(toy1-20>R[trow1])
+  {
+  toxback(tox1,toy1);
+ toy1=toy1-3;
+toolkey(tox1,toy1);
+  }
+  else
+  {
+  pp4=3;
+  }
+ }
+ }
+ else
+ {
+ pp4=3;
+ }
+}
+else if(pp4==4)//down
+ {
+  if(toy1+21<465)
+   {
+    if(Br[trow1+1][tcolumn1]==0&&bombn[trow1+1][tcolumn1]==0)
+    {
+    toxback(tox1,toy1);
+    toy1=toy1+3;
+    toolkey(tox1,toy1);
+      if(toy1+16>R[trow1+1])
+       {
+	trow1++;
+       }
+    }
+    else
+    {
+
+      if(toy1+19<R[trow1+1])
+      {
+       toxback(tox1,toy1);
+       toy1=toy1+3;
+       toolkey(tox1,toy1);
+       }
+      else
+       {
+	pp4=2;
+       }
+      }
+      }
+  else
+  {
+   pp4=2;
+  }
+}
+else if(pp4==1) //right
+{
+  if(tox1+23<601)
+  {
+     if(Br[trow1][tcolumn1+1]==0&&bombn[trow1][tcolumn1+1]==0)
+      {  toxback(tox1,toy1);
+	 tox1=tox1+3;
+	 toolkey(tox1,toy1);
+	 if(tox1+16>C[tcolumn1+1])
+	  {
+	   tcolumn1++;
+	  }
+	  }
+    else
+    {
+      if(tox1+16<C[tcolumn1+1])
+	{   toxback(tox1,toy1);
+	    tox1=tox1+3;
+	    toolkey(tox1,toy1);
+	}
+	else
+	{
+	pp4=4;
+	}
+     }
+  }
+ else
+ {
+ pp4=4;
+ }
+}
+else if(pp4==3) //left
+{
+  if(tox1-19>40)
+   {
+	if(Br[trow1][tcolumn1-1]==0&&bombn[trow1][tcolumn1-1]==0)  /////////
+	 { toxback(tox1,toy1);
+	    tox1=tox1-3;
+	    toolkey(tox1,toy1);
+	    if(tox1-16<C[tcolumn1-1])
+	     {
+	      tcolumn1--;
+	     }
+	  }
+       else
+       {
+	if(tox1-20<C[tcolumn1-1])
+
+	 {   toxback(tox1,toy1);
+	     tox1=tox1-3;
+	     toolkey(tox1,toy1);
+	 }
+	 else
+	 {
+	 pp4=1;
+	 }
+       }
+    }
+ else
+ {
+ pp4=1;
+ }
+}
+}
+else
+{
+ toxback(tox1,toy1);
+}
+}
+//bomberman life
+ if(lifevx>0)
+{
+ if(((VX+8<BW+13&&VX+8>BW-13)||(VX-8<BW+13&&VX-8>BW-13))&&((VY+10<BH+16&&VY+10>BH-21)||(VY-15<BH+16&&VY-15>BH-21)))
+ {
+unblock();
+ if(li1==0)
+ {
+ life--;
+ li1=1;
+ }
+ }
+ else
+ {
+ li1=0;
+ }
+ }
+ if(lifevx1>0)
+ {
+ if(((VX1+8<BW+13&&VX1+8>BW-13)||(VX1-8<BW+13&&VX1-8>BW-13))&&((VY1+10<BH+16&&VY1+10>BH-21)||(VY1-15<BH+16&&VY1-15>BH-21)))
+ {
+unblock();
+  if(li2==0)
+ {
+ life--;
+ li2=1;
+ }
+ }
+ else
+ {
+ li2=0;
+ }
+ }
+ if(lifevx3>0)
+ {
+ if(((VX3+8<BW+13&&VX3+8>BW-13)||(VX3-8<BW+13&&VX3-8>BW-13))&&((VY3+10<BH+16&&VY3+10>BH-21)||(VY3-15<BH+16&&VY3-15>BH-21)))
+ {
+unblock();
+  if(li3==0)
+ {
+ life--;
+ li3=1;
+ }
+ }
+ else
+ {
+ li3=0;
+ }
+ }
+ if(lifetox>0)
+ {
+ if(((tox+8<BW+13&&tox+8>BW-13)||(tox-8<BW+13&&tox-8>BW-13))&&((toy+10<BH+16&&toy+10>BH-21)||(toy-15<BH+16&&toy-15>BH-21)))
+ {
+unblock();
+ if(li4==0)
+ {
+ life--;
+ li4=1;
+ }
+ }
+ else
+ {
+ li4=0;
+ }
+ }
+ if(lifetox1>0)
+ {
+  if(((tox1+8<BW+13&&tox1+8>BW-13)||(tox1-8<BW+13&&tox1-8>BW-13))&&((toy1+10<BH+16&&toy1+10>BH-21)||(toy1-15<BH+16&&toy1-15>BH-21)))
+ {
+unblock();
+  if(li5==0)
+ {
+ life--;
+ li5=1;
+ }
+ }
+ else
+ {
+ li5=0;
+ }
+ }
+if(bn==1)
+{
+if(nn<3)
+{
+setcolor(2);
+setfillstyle(1,2);
+rectangle(bombx-17,bomby-20,bombx+20,bomby+14);
+floodfill(bombx,bomby,2);
+bomb(bombx,bomby,n);
+n++;
+nn++;
+cc++;
+}
+else if(nn<6)
+{
+setcolor(2);
+setfillstyle(1,2);
+rectangle(bombx-17,bomby-20,bombx+20,bomby+14);
+floodfill(bombx,bomby,2);
+bomb(bombx,bomby,n);
+n--;
+nn++;
+cc++;
+}
+else
+{
+nn=0;
+}
+}
+
+if(cc==35)
+{
+ {
+ setcolor(2);
+ setfillstyle(1,2);
+ rectangle(bombx-17,bomby-20,bombx+20,bomby+14);
+ floodfill(bombx,bomby,2);
+ }
+ fx=bombx;
+ fy=bomby;
+ ffx=fx;
+ ffy=fy;
+ if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+ life--;
+ }
+ if(((VX+8<fx+19&&VX+8>fx-19)||(VX-8<fx+19&&VX-8>fx-19))&&((VY+10<fy+19&&VY+10>fy-19)||(VY-15<fy+19&&VY-15>fy-19)))
+ {
+ lifevx--;
+ score=score+1000;
+ }
+ if(((VX1+8<fx+19&&VX1+8>fx-19)||(VX1-8<fx+19&&VX1-8>fx-19))&&((VY1+10<fy+19&&VY1+10>fy-19)||(VY1-15<fy+19&&VY1-15>fy-19)))
+ {
+ lifevx1--;
+ score=score+1000;
+ }
+ if(((VX3+8<fx+19&&VX3+8>fx-19)||(VX3-8<fx+19&&VX3-8>fx-19))&&((VY3+10<fy+19&&VY3+10>fy-19)||(VY3-15<fy+19&&VY3-15>fy-19)))
+ {
+ lifevx3--;
+ score=score+1000;
+ }
+ if(((tox+8<fx+19&&tox+8>fx-19)||(tox-8<fx+19&&tox-8>fx-19))&&((toy+10<fy+19&&toy+10>fy-19)||(toy-15<fy+19&&toy-15>fy-19)))
+ {
+ lifetox--;
+ score=score+1000;
+ }
+  if(((tox1+8<fx+19&&tox1+8>fx-19)||(tox1-8<fx+19&&tox1-8>fx-19))&&((toy1+10<fy+19&&toy1+10>fy-19)||(toy1-15<fy+19&&toy1-15>fy-19)))
+ {
+ lifetox1--;
+ score=score+1000;
+ }
+flam(fx,fy);
+if(fy-40>65)
+{ if(Br[brow-1][bcolumn]!=2)
+  {
+   if(Br[brow-1][bcolumn]==1)
+   {   
+	score=score+100;
+    fy=fy-40;
+if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+ life--;
+ }
+ if(((VX+8<fx+19&&VX+8>fx-19)||(VX-8<fx+19&&VX-8>fx-19))&&((VY+10<fy+19&&VY+10>fy-19)||(VY-15<fy+19&&VY-15>fy-19)))
+ {
+ lifevx--;
+ score=score+1000;
+ }
+ if(((VX1+8<fx+19&&VX1+8>fx-19)||(VX1-8<fx+19&&VX1-8>fx-19))&&((VY1+10<fy+19&&VY1+10>fy-19)||(VY1-15<fy+19&&VY1-15>fy-19)))
+ {
+ lifevx1--;
+ score=score+1000;
+ }
+ if(((VX3+8<fx+19&&VX3+8>fx-19)||(VX3-8<fx+19&&VX3-8>fx-19))&&((VY3+10<fy+19&&VY3+10>fy-19)||(VY3-15<fy+19&&VY3-15>fy-19)))
+ {
+ lifevx3--;
+ score=score+1000;
+ }
+ if(((tox+8<fx+19&&tox+8>fx-19)||(tox-8<fx+19&&tox-8>fx-19))&&((toy+10<fy+19&&toy+10>fy-19)||(toy-15<fy+19&&toy-15>fy-19)))
+ {
+ lifetox--;
+ score=score+1000;
+ }
+  if(((tox1+8<fx+19&&tox1+8>fx-19)||(tox1-8<fx+19&&tox1-8>fx-19))&&((toy1+10<fy+19&&toy1+10>fy-19)||(toy1-15<fy+19&&toy1-15>fy-19)))
+ {
+ lifetox1--;
+ score=score+1000;
+ }
+   flam(fx,fy);
+  Br[brow-1][bcolumn]=0;
+    }//if
+   else
+   {
+    fy=fy-40;
+    for(int j=1;j<=flame;j++)
+    {     
+ if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+ life--;
+ }
+ if(((VX+8<fx+19&&VX+8>fx-19)||(VX-8<fx+19&&VX-8>fx-19))&&((VY+10<fy+19&&VY+10>fy-19)||(VY-15<fy+19&&VY-15>fy-19)))
+ {
+ lifevx--;
+ score=score+1000;
+ }
+ if(((VX1+8<fx+19&&VX1+8>fx-19)||(VX1-8<fx+19&&VX1-8>fx-19))&&((VY1+10<fy+19&&VY1+10>fy-19)||(VY1-15<fy+19&&VY1-15>fy-19)))
+ {
+ lifevx1--;
+ score=score+1000;
+ }
+ if(((VX3+8<fx+19&&VX3+8>fx-19)||(VX3-8<fx+19&&VX3-8>fx-19))&&((VY3+10<fy+19&&VY3+10>fy-19)||(VY3-15<fy+19&&VY3-15>fy-19)))
+ {
+ lifevx3--;
+ score=score+1000;
+ }
+ if(((tox+8<fx+19&&tox+8>fx-19)||(tox-8<fx+19&&tox-8>fx-19))&&((toy+10<fy+19&&toy+10>fy-19)||(toy-15<fy+19&&toy-15>fy-19)))
+ {
+ lifetox--;
+ score=score+1000;
+ }
+  if(((tox1+8<fx+19&&tox1+8>fx-19)||(tox1-8<fx+19&&tox1-8>fx-19))&&((toy1+10<fy+19&&toy1+10>fy-19)||(toy1-15<fy+19&&toy1-15>fy-19)))
+ {
+ lifetox1--;
+ score=score+1000;
+ }
+     flam(fx,fy);
+	 fy=fy-40;
+	if(Br[brow-j][bcolumn]==1)
+   {
+   score=score+100;
+Br[brow-j][bcolumn]=0;
+   break;
+   }
+   else if(Br[(brow-j)-1][bcolumn]==2||fy<65)
+   {
+   break;
+   }
+
+    }
+   }//else
+
+  }
+}
+fy=ffy;
+fx=ffx;
+if(fx-40>40)
+{
+if(Br[brow][bcolumn-1]!=2)
+{
+if(Br[brow][bcolumn-1]==1)
+{ 
+fx=fx-40;
+ score=score+100;
+
+if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+ if(((VX+8<fx+19&&VX+8>fx-19)||(VX-8<fx+19&&VX-8>fx-19))&&((VY+10<fy+19&&VY+10>fy-19)||(VY-15<fy+19&&VY-15>fy-19)))
+ {
+ lifevx--;
+ score=score+1000;
+ }
+ if(((VX1+8<fx+19&&VX1+8>fx-19)||(VX1-8<fx+19&&VX1-8>fx-19))&&((VY1+10<fy+19&&VY1+10>fy-19)||(VY1-15<fy+19&&VY1-15>fy-19)))
+ {
+ lifevx1--;
+ score=score+1000;
+ }
+ if(((VX3+8<fx+19&&VX3+8>fx-19)||(VX3-8<fx+19&&VX3-8>fx-19))&&((VY3+10<fy+19&&VY3+10>fy-19)||(VY3-15<fy+19&&VY3-15>fy-19)))
+ {
+ lifevx3--;
+ score=score+1000;
+ }
+ if(((tox+8<fx+19&&tox+8>fx-19)||(tox-8<fx+19&&tox-8>fx-19))&&((toy+10<fy+19&&toy+10>fy-19)||(toy-15<fy+19&&toy-15>fy-19)))
+ {
+ lifetox--;
+ score=score+1000;
+ }
+  if(((tox1+8<fx+19&&tox1+8>fx-19)||(tox1-8<fx+19&&tox1-8>fx-19))&&((toy1+10<fy+19&&toy1+10>fy-19)||(toy1-15<fy+19&&toy1-15>fy-19)))
+ {
+ lifetox1--;
+ score=score+1000;
+ }
+ flam(fx,fy);
+Br[brow][bcolumn-1]=0;
+}
+else
+{
+fx=fx-40;
+for(int j=1;j<=flame;j++)
+    {   
+if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+ if(((VX+8<fx+19&&VX+8>fx-19)||(VX-8<fx+19&&VX-8>fx-19))&&((VY+10<fy+19&&VY+10>fy-19)||(VY-15<fy+19&&VY-15>fy-19)))
+ {
+ lifevx--;
+ score=score+1000;
+ }
+ if(((VX1+8<fx+19&&VX1+8>fx-19)||(VX1-8<fx+19&&VX1-8>fx-19))&&((VY1+10<fy+19&&VY1+10>fy-19)||(VY1-15<fy+19&&VY1-15>fy-19)))
+ {
+ lifevx1--;
+ score=score+1000;
+ }
+ if(((VX3+8<fx+19&&VX3+8>fx-19)||(VX3-8<fx+19&&VX3-8>fx-19))&&((VY3+10<fy+19&&VY3+10>fy-19)||(VY3-15<fy+19&&VY3-15>fy-19)))
+ {
+ lifevx3--;
+ score=score+1000;
+ }
+ if(((tox+8<fx+19&&tox+8>fx-19)||(tox-8<fx+19&&tox-8>fx-19))&&((toy+10<fy+19&&toy+10>fy-19)||(toy-15<fy+19&&toy-15>fy-19)))
+ {
+ lifetox--;
+ score=score+1000;
+ }
+  if(((tox1+8<fx+19&&tox1+8>fx-19)||(tox1-8<fx+19&&tox1-8>fx-19))&&((toy1+10<fy+19&&toy1+10>fy-19)||(toy1-15<fy+19&&toy1-15>fy-19)))
+ {
+ lifetox1--;
+ score=score+1000;
+ }
+    flam(fx,fy);
+	fx=fx-40;
+	if(Br[brow][bcolumn-j]==1)
+      {
+	Br[brow][bcolumn-j]=0;
+	score=score+100;
+      break;
+      }
+      else if(Br[brow][(bcolumn-j)-1]==2||fx<40)
+      {
+      break;
+      }
+    }
+    }
+}
+}
+fy=ffy;
+fx=ffx;
+if(fx+40<600)
+{
+if(Br[brow][bcolumn+1]!=2)
+{
+if(Br[brow][bcolumn+1]==1)
+{  
+fx=fx+40;
+  score=score+100;
+if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+ if(((VX+8<fx+19&&VX+8>fx-19)||(VX-8<fx+19&&VX-8>fx-19))&&((VY+10<fy+19&&VY+10>fy-19)||(VY-15<fy+19&&VY-15>fy-19)))
+ {
+ lifevx--;
+ score=score+1000;
+ }
+ if(((VX1+8<fx+19&&VX1+8>fx-19)||(VX1-8<fx+19&&VX1-8>fx-19))&&((VY1+10<fy+19&&VY1+10>fy-19)||(VY1-15<fy+19&&VY1-15>fy-19)))
+ {
+ lifevx1--;
+ score=score+1000;
+ }
+ if(((VX3+8<fx+19&&VX3+8>fx-19)||(VX3-8<fx+19&&VX3-8>fx-19))&&((VY3+10<fy+19&&VY3+10>fy-19)||(VY3-15<fy+19&&VY3-15>fy-19)))
+ {
+ lifevx3--;
+ score=score+1000;
+ }
+ if(((tox+8<fx+19&&tox+8>fx-19)||(tox-8<fx+19&&tox-8>fx-19))&&((toy+10<fy+19&&toy+10>fy-19)||(toy-15<fy+19&&toy-15>fy-19)))
+ {
+ lifetox--;
+ score=score+1000;
+ }
+  if(((tox1+8<fx+19&&tox1+8>fx-19)||(tox1-8<fx+19&&tox1-8>fx-19))&&((toy1+10<fy+19&&toy1+10>fy-19)||(toy1-15<fy+19&&toy1-15>fy-19)))
+ {
+ lifetox1--;
+ score=score+1000;
+ }
+ flam(fx,fy);
+Br[brow][bcolumn+1]=0;
+}
+else
+{
+ fx=fx+40;
+for(int j=1;j<=flame;j++)
+    {     
+	if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+ if(((VX+8<fx+19&&VX+8>fx-19)||(VX-8<fx+19&&VX-8>fx-19))&&((VY+10<fy+19&&VY+10>fy-19)||(VY-15<fy+19&&VY-15>fy-19)))
+ {
+ lifevx--;
+ score=score+1000;
+ }
+ if(((VX1+8<fx+19&&VX1+8>fx-19)||(VX1-8<fx+19&&VX1-8>fx-19))&&((VY1+10<fy+19&&VY1+10>fy-19)||(VY1-15<fy+19&&VY1-15>fy-19)))
+ {
+ lifevx1--;
+ score=score+1000;
+ }
+ if(((VX3+8<fx+19&&VX3+8>fx-19)||(VX3-8<fx+19&&VX3-8>fx-19))&&((VY3+10<fy+19&&VY3+10>fy-19)||(VY3-15<fy+19&&VY3-15>fy-19)))
+ {
+ lifevx3--;
+ score=score+1000;
+ }
+ if(((tox+8<fx+19&&tox+8>fx-19)||(tox-8<fx+19&&tox-8>fx-19))&&((toy+10<fy+19&&toy+10>fy-19)||(toy-15<fy+19&&toy-15>fy-19)))
+ {
+ lifetox--;
+ score=score+1000;
+ }
+  if(((tox1+8<fx+19&&tox1+8>fx-19)||(tox1-8<fx+19&&tox1-8>fx-19))&&((toy1+10<fy+19&&toy1+10>fy-19)||(toy1-15<fy+19&&toy1-15>fy-19)))
+ {
+ lifetox1--;
+ score=score+1000;
+ }
+  flam(fx,fy);
+
+	fx=fx+40;
+	if(Br[brow][bcolumn+j]==1)
+      {
+Br[brow][bcolumn+j]=0;
+	 score=score+100;
+      break;
+      }
+      else if(Br[brow][bcolumn+j+1]==2||fx>600)
+      {
+      break;
+      }
+}
+}
+}
+}
+fy=ffy;
+fx=ffx;
+if(fy+40<465)
+{
+if(Br[brow+1][bcolumn]!=2)
+{
+if(Br[brow+1][bcolumn]==1)
+{
+  fy=fy+40;
+   score=score+100;
+  if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+ if(((VX+8<fx+19&&VX+8>fx-19)||(VX-8<fx+19&&VX-8>fx-19))&&((VY+10<fy+19&&VY+10>fy-19)||(VY-15<fy+19&&VY-15>fy-19)))
+ {
+ lifevx--;
+ score=score+1000;
+ }
+ if(((VX1+8<fx+19&&VX1+8>fx-19)||(VX1-8<fx+19&&VX1-8>fx-19))&&((VY1+10<fy+19&&VY1+10>fy-19)||(VY1-15<fy+19&&VY1-15>fy-19)))
+ {
+ lifevx1--;
+score=score+1000;
+ }
+ if(((VX3+8<fx+19&&VX3+8>fx-19)||(VX3-8<fx+19&&VX3-8>fx-19))&&((VY3+10<fy+19&&VY3+10>fy-19)||(VY3-15<fy+19&&VY3-15>fy-19)))
+ {
+ lifevx3--;
+ score=score+1000;
+ }
+ if(((tox+8<fx+19&&tox+8>fx-19)||(tox-8<fx+19&&tox-8>fx-19))&&((toy+10<fy+19&&toy+10>fy-19)||(toy-15<fy+19&&toy-15>fy-19)))
+ {
+ lifetox--;
+ score=score+1000;
+ }
+  if(((tox1+8<fx+19&&tox1+8>fx-19)||(tox1-8<fx+19&&tox1-8>fx-19))&&((toy1+10<fy+19&&toy1+10>fy-19)||(toy1-15<fy+19&&toy1-15>fy-19)))
+ {
+ lifetox1--;
+ score=score+1000;
+ }
+ flam(fx,fy);
+Br[brow+1][bcolumn]=0;
+}
+ else
+ {
+ fy=fy+40;
+for(int j=1;j<=flame;j++)
+    {
+ if(((BW+8<fx+19&&BW+8>fx-19)||(BW-8<fx+19&&BW-8>fx-19))&&((BH+10<fy+19&&BH+10>fy-19)||(BH-15<fy+19&&BH-15>fy-19)))
+ {
+
+ life--;
+ }
+ if(((VX+8<fx+19&&VX+8>fx-19)||(VX-8<fx+19&&VX-8>fx-19))&&((VY+10<fy+19&&VY+10>fy-19)||(VY-15<fy+19&&VY-15>fy-19)))
+ {
+ lifevx--;
+ score=score+1000;
+ }
+ if(((VX1+8<fx+19&&VX1+8>fx-19)||(VX1-8<fx+19&&VX1-8>fx-19))&&((VY1+10<fy+19&&VY1+10>fy-19)||(VY1-15<fy+19&&VY1-15>fy-19)))
+ {
+ lifevx1--;
+ score=score+1000;
+ }
+ if(((VX3+8<fx+19&&VX3+8>fx-19)||(VX3-8<fx+19&&VX3-8>fx-19))&&((VY3+10<fy+19&&VY3+10>fy-19)||(VY3-15<fy+19&&VY3-15>fy-19)))
+ {
+ lifevx3--;
+ score=score+1000;
+ }
+ if(((tox+8<fx+19&&tox+8>fx-19)||(tox-8<fx+19&&tox-8>fx-19))&&((toy+10<fy+19&&toy+10>fy-19)||(toy-15<fy+19&&toy-15>fy-19)))
+ {
+ lifetox--;
+ score=score+1000;
+ }
+  if(((tox1+8<fx+19&&tox1+8>fx-19)||(tox1-8<fx+19&&tox1-8>fx-19))&&((toy1+10<fy+19&&toy1+10>fy-19)||(toy1-15<fy+19&&toy1-15>fy-19)))
+ {
+ lifetox1--;
+ score=score+1000;
+ }
+    flam(fx,fy);
+	 fy=fy+40;
+	if(Br[brow+j][bcolumn]==1)
+   {
+Br[brow+j][bcolumn]=0;
+    score=score+100;
+   break;
+   }
+   else if(Br[brow+j+1][bcolumn]==2||fy>465)
+   {
+   break;
+   }
+    }
+ }
+}
+}
+bn=0;
+cc=0;
+bombn[brow][bcolumn]=0;
+unblock();
+}
+if(life<lifen[1])
+{
+ lifen[1]--;
+ life=lifen[1];
+}
+if(Br[9][11]==0)
+{
+if(keyf==1)
+{
+keyy();
+if(row==9&&column==11)
+{
+ keyf=0;
+}
+}
+}
+if(Br[4][13]==0)
+{
+if(keyf==1)
+{
+closed();
+}
+else if(keyf==0)
+{
+door();
+}
+}
+if(Br[1][2]==0)
+{
+if(flame1==1)
+{
+fire(1);
+if(row==1&&column==2)
+{
+flame1=0;
+flame++;
+flamen[1]++;
+}
+}
+}
+
+if(Br[0][8]==0)
+{
+if(flame2==1)
+{
+fire(2);
+if(row==0&&column==8)
+{
+flame2=0;
+flame++;
+flamen[1]++;
+}
+}
+}
+
+
+if(Br[1][10]==0)
+{
+if(flame3==1)
+{
+fire(3);
+if(row==1&&column==10)
+{
+flame3=0;
+flame++;
+flamen[1]++;
+}
+}
+}
+
+
+if(Br[4][8]==0)
+{
+if(flame4==1)
+{
+fire(4);
+if(row==4&&column==8)
+{
+flame4=0;
+flame++;
+flamen[1]++;
+}
+}
+}
+if(Br[8][10]==0)
+{
+if(flame5==1)
+{
+fire(5);
+if(row==8&&column==10)
+{
+flame5=0;
+flame++;
+flamen[1]++;
+}
+}
+}
+if(Br[4][5]==0)
+{
+if(flame6==1)
+{
+fire(6);
+if(row==4&&column==5)
+{
+flame6=0;
+flame++;
+flamen[1]++;
+}
+}
+}
+if(Br[8][2]==0)
+{
+if(flame7==1)
+{
+fire(7);
+if(row==8&&column==2)
+{
+flame7=0;
+flame++;
+flamen[1]++;
+}
+}
+}
+if(Br[9][5]==0)
+{
+if(flame8==1)
+{
+fire(8);
+if(row==9&&column==5)
+{
+flame8=0;
+flame++;
+flamen[1]++;
+}
+}
+}
+if(Br[9][1]==0)
+{
+if(love==1)
+{
+lifee(1);
+if(row==9&&column==1)
+{
+life++;
+lifen[1]++;
+love=0;
+
+}
+}
+}
+if(Br[8][6]==0)
+{
+if(love1==1)
+{
+lifee(2);
+if(row==8&&column==6)
+{
+life++;
+lifen[1]++;
+love1=0;
+}
+}
+}
+if(Br[7][11]==0)
+{
+if(love2==1)
+{
+lifee(3);
+if(row==7&&column==11)
+{
+life++;
+lifen[1]++;
+love2=0;
+}
+}
+}
+score1=score;
+while(score!=0)
+{
+coin[sc]=score%10;
+score=score/10;
+sc--;
+}
+score=score1;
+sc=6;
+window(1,1,80,2);
+clrscr();
+cout<<"Time:"<<time[0]<<time[1]<<time[2]<<time[3]<<"  Life:"<<lifen[0]<<lifen[1]<<"   Bomb:"<<nbomb[0]<<nbomb[1]<<"    Flame:"<<flamen[0]<<flamen[1]<<"     Key:"<<key<<"     Speed:"<<speed<<"     score:"<<coin[0]<<coin[1]<<coin[2]<<coin[3]<<coin[4]<<coin[5]<<coin[6];
+if(aa==0)
+{
+fmove(0,BH,BW);
+delay(100);
+aa=4;
+}
+else if(aa==1)
+{
+fback(0,BH,BW);
+delay(100);
+aa=4;
+}
+else if(aa==2)
+{
+fright(BH,BW);
+delay(100);
+aa=4;
+}
+else if(aa==3)
+{
+fleft(BH,BW);
+delay(100);
+aa=4;
+}
+delay(100);
+while(kbhit())
+{
+int choi;
+choi=getch();
+if(choi==27)
+{
+return(7);
+}
+
+//case 108:  ////////////////////////////////////////
+else if(choi==108)
+{ if(bn==0)
+{
+bomby=R[row]+20;
+bombx=C[column]+19;
+bombn[row][column]=1;
+brow=row;
+bcolumn=column;
+bn=1;
+}}
+else
+{
+nngame(choi,row,column,BH,BW,aa,bombx,bomby);
+}
+//break;
+//case 27:
+//return(7);
+//}
+}
+}
+return(6);
+}

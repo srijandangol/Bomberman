@@ -1,0 +1,363 @@
+#include<graphics.h>
+void nngame(int &choi, int &row,int &column,int &BH,int &BW,int &aa,int &bombx,int &bomby);
+switch(choi)
+{
+case 115:
+if(BH+17<465)
+{
+  if(BW-16>=C[column]&&BW+22<=C[column+1])
+  {
+   if(Br[row+1][column]==0&&bombn[row+1][column]==0)
+    {
+   bman(BW,BH);
+BH=BH+2;
+aa=0;
+  if(BH+14>R[row+1])
+  {
+  row++;
+  }
+ }
+ else if(Br[row+1][column]==0&&bombn[row+1][column]!=0)
+ {
+  if((BH+16>=bomby-19&&BH+16<=bomby+12)||(BH-22>=bomby-19&&BH-22<=bomby+12))
+    {
+  bman(BW,BH);
+BH=BH+2;
+aa=1;
+  if(BH+14>R[row+1])
+  {
+  row++;
+  }
+      }
+  else
+  {
+ if(BH+16<R[row+1])
+  {
+ bman(BW,BH);
+BH=BH+2;
+aa=0;
+     }
+  }
+ }
+ else
+ {
+    if(bombn[row][column]!=0)
+    {
+
+      if(BH-22>=bomby-18&&BH-22<=bomby+11)
+    {
+    if(BH+16<R[row+1])
+  {
+ bman(BW,BH);
+BH=BH+2;
+aa=0;
+      }
+      }
+      else if(BH-22>bomby+11)
+      {
+      if(BH+16<R[row+1])
+  {
+      bman(BW,BH);
+BH=BH+2;
+aa=0;
+  }
+      }
+    }
+    else if(bombn[row][column]==0)
+    {
+    if(BH+16<R[row+1])
+  {
+   bman(BW,BH);
+BH=BH+2;
+aa=0;
+
+  }
+  else
+  {
+ bman(BW,BH);
+aa=0;
+  }
+  }
+ }
+ }
+}
+break;
+case 119://up
+if(BH-24>65)
+{
+if(BW-16>=C[column]&&BW+22<=C[column+1])
+{
+if(Br[row-1][column]==0&&bombn[row-1][column]==0)
+ {
+ bman(BW,BH);
+BH=BH-2;
+aa=1;
+  if(BH-21<R[row])
+  {
+  row--;
+  }
+ }
+ else if(Br[row-1][column]==0&&bombn[row-1][column]!=0)
+ { if((BH-22>=bomby-19&&BH-22<=bomby+12)||(BH+16>=bomby-19&&BH+16<=bomby+12))
+    {
+ bman(BW,BH);
+BH=BH-2;
+aa=1;
+  if(BH-21<R[row])
+  {
+  row--;
+  }
+  }
+   else
+   {
+   if(BH-23>R[row])
+  {
+ bman(BW,BH);
+BH=BH-2;
+aa=1;
+
+  }
+  }
+ }
+ else
+ {
+     if(bombn[row][column]!=0)
+    {
+    if(BH+16>=bomby-18&&BH+16<=bomby+11)
+    {
+     if(BH-21>R[row])
+  {
+ bman(BW,BH);
+BH=BH-2;
+aa=1;
+      }
+      }
+      else if(BH+16<bomby-18)
+      {
+       if(BH-21>R[row])
+  {
+      bman(BW,BH);
+BH=BH-2;
+aa=1;
+      }
+      }
+      }
+      else if(bombn[row][column]==0)
+    {
+    if(BH-24>R[row])
+  {
+ bman(BW,BH);
+BH=BH-2;
+aa=1;
+
+  }
+  else
+  {
+  bman(BW,BH);
+aa=1;
+  }
+  }
+ }
+ }
+}
+break;
+case 97:
+if(BW-16>40)
+{
+if(BH-22>R[row]&&BH+15<R[row+1])
+{
+if(Br[row][column-1]==0&&bombn[row][column-1]==0)
+ {
+  bman(BW,BH);
+aa=3;
+ BW=BW-2;
+ if(BW-13<C[column])
+ {
+ column--;
+ }
+ }
+ else if(Br[row][column-1]==0&&bombn[row][column-1]!=0)
+ {
+  if((BW-12>=bombx-11&&BW-12<=bombx+15)||(BW+12>=bombx-11&&BW+12<=bombx+15))
+    {
+ bman(BW,BH);
+BW=BW-2;
+aa=3;
+if(BW-13<C[column])
+ {
+ column--;
+ }
+      }
+
+    else
+    {
+    if(BW-16>C[column])
+ {
+  bman(BW,BH);
+BW=BW-2;
+aa=3;
+  }
+ }
+ }
+ else
+ {
+ if(bombn[row][column]!=0)
+ {
+    if(BW+12>=bombx-11&&BW+12<=bombx+15)
+    {
+     if(BW-16>C[column])
+ {
+ bman(BW,BH);
+BW=BW-2;
+aa=3;
+      }
+      }
+      else if(BW+18<bombx-11)
+      {
+       if(BW-16>C[column])
+ { bman(BW,BH);
+BW=BW-2;
+aa=3;
+      }
+      }
+ }
+ else
+ {
+   bman(BW,BH);
+aa=3;
+   if(BW-16>C[column])
+ {
+  bman(BW,BH);
+BW=BW-2;
+aa=3;
+ }
+ }
+ }
+ }
+else if((BH-22<=R[row]-5&&BH+15<R[row+1]))
+{
+if(row%2==0)
+{
+if(BH+16<=R[row+1])
+{
+ bman(BW,BH);
+aa=0;
+BH=BH+2;
+}
+}
+}
+else if((BH-22<=R[row+1]&&BH+15>=R[row+1]))
+{
+if(row%2==0)
+{
+if(BH>=R[row])
+{
+ bman(BW,BH);
+aa=1 ;
+BH=BH-2;
+}
+}
+}
+}
+break;
+case 100://right
+if(BW+24<=601)
+{
+if(BH-22>R[row]&&BH+15<R[row+1])
+{
+if(Br[row][column+1]==0&&bombn[row][column+1]==0)
+ {
+ bman(BW,BH);
+aa=2;
+ BW=BW+2;
+ if(BW+16>C[column+1])
+ {
+ column++;
+ }
+ }
+ else if(Br[row][column+1]==0&&bombn[row][column+1]!=0)
+ {
+  if((BW+12>=bombx-11&&BW+12<=bombx+15)||(BW-12>=bombx-11&&BW-12<=bombx+15))
+    {
+ bman(BW,BH);
+BW=BW+2;
+aa=2;
+if(BW+16>C[column+1])
+ {
+ column++;
+ }
+      }
+   else
+   {
+    if(BW+26<C[column+1])
+ {
+ bman(BW,BH);
+BW=BW+2;
+aa=2;
+ }
+ }
+ }
+ else
+ {
+ if(bombn[row][column]!=0)
+ {
+    if(BW-12>=bombx-11&&BW-12<=bombx+15)
+    {
+ if(BW+26<C[column+1])
+ {
+ bman(BW,BH);
+BW=BW+2;
+aa=2;
+      }
+      }
+      else if(BW-12>bombx+15)
+      {
+      if(BW+26<C[column+1])
+ {
+      bman(BW,BH);
+BW=BW+2;
+aa=2;
+      }
+      }
+ }
+
+ else
+ {
+  bman(BW,BH);
+aa=2;
+   if(BW+24<C[column+1])
+ {
+ bman(BW,BH);
+BW=BW+2;
+aa=2;
+ }
+ }
+ }
+ }
+else if((BH-22<=R[row]+5&&BH+15<R[row+1]))
+{
+if(row%2==0)
+{
+if(BH+16<=R[row+1])
+{
+ bman(BW,BH);
+aa=0;
+BH=BH+2;
+}
+}
+}
+else if((BH-22<=R[row+1]&&BH+15>=R[row+1]))
+{
+if(row%2==0)
+{
+if(BH>=R[row])
+{
+ bman(BW,BH);
+aa=1 ;
+BH=BH-2;
+}
+}
+}
+}
+break;
+}
