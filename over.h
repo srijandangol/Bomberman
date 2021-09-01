@@ -11,7 +11,7 @@ setcolor(3);
 setfillstyle(1,3);
 rectangle(20,22,620,452); //small rectangle
 floodfill(22,38,3);
-setcolor(8);
+setcolor(8); //set color
 setfillstyle(1,14);
 rectangle(550,425,620,452);
 floodfill(553,427,8);
